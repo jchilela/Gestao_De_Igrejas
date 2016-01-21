@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{%block igreja1%}{{igreja.nomeDaIgreja}}{%endblock igreja1%}
+{%block igreja2%}{{igreja.nomeDaIgreja}}{%endblock igreja2%}
+{% block ano %} {{ano}}{% endblock ano %}
+{%block igreja3%}{{igreja.nomeDaIgreja}} {%endblock igreja3%}
+{% block desenvolvedores %} {{configuracoes.desenvolvedores}}{% endblock desenvolvedores %}
+{% block content %}
+
+
+<h1>NOTÍCIAS</h1>
+
+{% for resultado in resultado %}
+<hr>
+<a href="/gestao/noticias/visualizar/">{{resultado.titulo}}</a><p></p>
+{{resultado.noticia}}<p></p>
+Data:{{resultado.dataPublicacao}}<p></p>
+
+<!--{{ form.instance.profile_pic.url }}-->
+
+
+
+<img src="/media/{{resultado.foto}}" width="200" heigth="400"><p></p>
+
+
+
+
+
+
+{% for funcionario in funcionario %}
+Por: {{funcionario.nomeDoMembro}}<p></p>
+{% endfor  %}
+<hr>
+{% endfor  %}
+
+{% endblock content %}

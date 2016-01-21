@@ -1,0 +1,123 @@
+{%extends "base.html"%}
+{%block igreja1%}{{igreja.nomeDaIgreja}}{%endblock igreja1%}
+{%block igreja2%}{{igreja.nomeDaIgreja}}{%endblock igreja2%}
+{% block ano %} {{ano}}{% endblock ano %}
+{%block igreja3%}{{igreja.nomeDaIgreja}} {%endblock igreja3%}
+{% block desenvolvedores %} {{configuracoes.desenvolvedores}}{% endblock desenvolvedores %}
+{%block content%}
+<div class="col-sm-9" >
+  <div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs col-sm-10" role="tablist">
+    <li role="presentation" class="active" style="font-size:12px; "><a href="#pesquisarFuncionario" aria-controls="pesquisarFuncionario" role="tab" data-toggle="tab">Pesquisar Funcionário</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content col-sm-10" style = "background-color: white; box-shadow: 2px 10px 10px 3px grey;">
+  
+    <div role="tabpanel" class="tab-pane fade in active" id="pesquisarFuncionario" style="font-size:12px;  margin-top: 10px;">
+  <form class="form-horizontal" role="form" method="GET">
+
+
+    <div class="form-group">
+      <!--<label class="control-label col-sm-2" for="email">Especialidade:</label>
+      <div class="col-sm-10">
+        <select class="form-control input-sm" id="especialidade" name="especialidade">
+        <option>Todos</option>
+        <option>Angeologia</option>
+        <option>Dermatologia</option>
+        <option>Ortopedia</option>
+        <option>Oftamologia</option>
+        <option>Obstetricia</option>
+      </select>
+      </div>-->
+<!--<script type="text/javascript">
+  function myFunction() {
+
+    if (document.getElementById("data").selected){
+      document.getElementById("col-sm-10").style.display = "none";
+      document.getElementById("entrada").style.display = "none";
+      document.getElementById("containerx").style.display="none";
+    }
+    else{
+      document.getElementById("col-sm-10").style.display = "block";
+      document.getElementById("entrada").style.display = "block";
+      document.getElementById("containerx").style.display="block";
+    }
+      
+  }-->
+
+      <label class="control-label col-sm-2" for="pwd">Opcao:</label>
+      <div class="col-sm-9">          
+       <select size="1" class="form-control input-sm" id="opcao" name = "opcao">
+        <option id ="nome" selected onclick="myFunction()">Todos</option>
+        <option id ="nome" onclick="myFunction()">Nome</option>
+        <option id="especialidade" onclick="myFunction()">Numero do Funcionario</option>
+        
+      </select>
+      </div>
+      <label class="control-label col-sm-2" id ="entrada"for="pwd">Informação:</label>
+      <div class="col-sm-9" id="col-sm-9">          
+        <input type="text" class="form-control" id="informacao" name = "informacao"placeholder="Informação">
+      </div>
+      <div class="col-sm-offset-2 col-sm-9">
+        <button type="submit" class="btn btn-default">Pesquisar</button>
+      </div>
+    </div>
+ </form>
+  
+  <h6>{{mensagem}}</h6> 
+  <h6>{{msg}}</h6>    
+  {%if resultado %}
+  <div class="table-responsive">   
+  <table class="table table-hover">
+     
+   <thead>
+      <tr>
+        <th>Numero do Funcionário</th>
+        <th>Nome</th>
+        <th>Cargo</th>
+        <th>Telefone</th>
+        
+      </tr>
+    </thead>
+   {% for resultado in resultado %}
+    <tbody>
+      <tr>
+        <td>{{resultado.numeroDeFuncionario}}</td>
+        <td>{{resultado.nomeDoFuncionario}}</td>
+         <td>{{resultado.cargo}}</td>
+        <td>{{resultado.telefone}}</td>
+         <td><a href="/gestao/rh/funcionario/visualizar?id={{resultado.id}}">Visualizar</a></td>
+        <td><a href="/gestao/rh/funcionario/editar?id={{resultado.id}}">Editar</a></td>
+        <td><a href="/gestao/rh/funcionario/eliminar?id={{resultado.id}}">Eliminar</a></td>
+        <td><a href="/gestao/rh/funcionario/salario?id={{resultado.id}}">Salários</a></td>
+
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+  </div>
+  {%endif%}
+ 
+</div>
+</div>
+</div>
+</div>
+  
+<style type="text/css">
+.col-sm-9{
+      margin-bottom: 6px;
+      
+    }
+    .control-label{
+      font-size: 10px;
+    }
+    .form-control{
+      font-size: 12px;
+    }
+   
+</style>
+
+{% endblock content %}

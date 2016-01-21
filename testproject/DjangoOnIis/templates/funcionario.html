@@ -1,0 +1,179 @@
+{%extends "base.html"%}
+{%block igreja1%}{{igreja.nomeDaIgreja}}{%endblock igreja1%}
+{%block igreja2%}{{igreja.nomeDaIgreja}}{%endblock igreja2%}
+{% block ano %} {{ano}}{% endblock ano %}
+{%block igreja3%}{{igreja.nomeDaIgreja}} {%endblock igreja3%}
+{% block desenvolvedores %} {{configuracoes.desenvolvedores}}{% endblock desenvolvedores %}
+{%block content%}
+<div class="col-sm-9" >
+  <div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs col-sm-10" role="tablist">
+    <li role="presentation" class="active" style="font-size:12px; "><a href="#novo" aria-controls="novo" role="tab" data-toggle="tab">Novo Funcionário</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content col-sm-10" style = "background-color: white; box-shadow: 2px 10px 10px 3px grey;">
+  
+    <div role="tabpanel" class="tab-pane fade in active" id="novo">
+  <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    {{form.errors}}
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Nome:</label>
+     <div class="col-sm-9">          
+        <input type="text" class="form-control" id="nomeDoMembro" name = "nomeDoFuncionario"placeholder="Nome do Funcionário">
+      </div>
+
+
+
+      <label class="control-label col-sm-2" for="pwd">Estado Civil:</label>
+      <div class="col-sm-9">          
+       <select class="form-control input-sm" id="estadoCivil" name = "estadoCivil">
+        <option></option>
+        <option>Solteiro(a)</option>
+        <option>Casado(a)</option>
+        <option>Divorciado(a)</option>
+        <option>Viúvo(a)</option>
+      </select>
+      </div>
+
+      <label class="control-label col-sm-2" for="pwd">Sexo:</label>
+      <div class="col-sm-9">          
+       <select class="form-control input-sm" id="sexo" name = "sexo">
+        <option></option>
+        <option>Masculino</option>
+        <option>Feminino</option>
+      </select>
+      </div>
+
+      <label class="control-label col-sm-2" for="pwd">Cargo:</label>
+      <div class="col-sm-9">          
+        <input type="text" class="form-control" id="cargo" name = "cargo"placeholder="Cargo Profissional">
+      </div>
+      
+       <label class="control-label col-sm-2" for="pwd">Endereço:</label>
+      <div class="col-sm-9">          
+        <input type="text" class="form-control" id="endereco" name = "endereco"placeholder="Endereço">
+      </div>
+
+      <label class="control-label col-sm-2" for="pwd">Bairro:</label>
+      <div class="col-sm-9">          
+        <input type="text" class="form-control" id="bairro" name = "bairro"placeholder="Bairro">
+      </div>
+ <label class="control-label col-sm-2" for="pwd">Provincia:</label>
+      <div class="col-sm-9">          
+       <select class="form-control input-sm" id="provincia" name = "provincia">
+        <option></option>
+        {% for provincia in provincia %}
+        <option>{{provincia.nomeDaProvincia}}</option>
+        {% endfor %}
+      </select>
+      </div>
+
+      <label class="control-label col-sm-2" for="pwd">Caixa Postal:</label>
+      <div class="col-sm-9">          
+        <input type="text" class="form-control" id="caixaPostal" name = "caixaPostal"placeholder="Caixa Postal">
+      </div>
+      <label class="control-label col-sm-2" for="pwd">Telefone:</label>
+      <div class="col-sm-9">          
+        <input type="text" class="form-control" id="telefone" name = "telefone"placeholder="Telefone">
+      </div>
+
+ <label class="control-label col-sm-2" for="pwd">E-mail:</label>
+      <div class="col-sm-9">          
+        <input type="text" class="form-control" id="email" name = "email"placeholder="E-mail">
+      </div>
+
+       <label class="control-label col-sm-2" for="pwd">Data de nascimento:</label>
+      <div class="col-sm-9">          
+        <input type="text" class="form-control" id="dataDeNascimento" name = "dataDeNascimento"placeholder="Data de Nascimento">
+      </div>
+ 
+      <label class="control-label col-sm-2" for="pwd">Nacionalidade:</label>
+      <div class="col-sm-9">          
+       <select class="form-control input-sm" id="pais" name = "pais">
+        <option></option>
+        {% for pais in pais %}
+        <option>{{pais.nomeDoPais}}</option>
+        {% endfor %}
+      </select>
+      </div>
+      <label class="control-label col-sm-2" for="pwd">Grau acadêmicao:</label>
+      <div class="col-sm-9">          
+        <input type="text" class="form-control" id="grauAcademico" name = "grauAcademico"placeholder="Grau Acadêmico">
+      </div>
+      <label class="control-label col-sm-2" for="pwd">Profissão:</label>
+      <div class="col-sm-9">          
+        <input type="text" class="form-control" id="profissao" name = "profissao"placeholder="Profissão">
+      </div>
+
+      <label class="control-label col-sm-2" for="pwd">Número de identificação:</label>
+      <div class="col-sm-9">          
+        <input type="text" class="form-control" id="numeroDeIdentificacao" name = "numeroDeIdentificacao"placeholder="Número de Identificação">
+      </div>
+      
+      <label class="control-label col-sm-2" for="pwd">Pai:</label>
+      <div class="col-sm-9">          
+        <input type="text" class="form-control" id="filiacaoPai" name = "filiacaoPai"placeholder="Pai">
+      </div>
+      <label class="control-label col-sm-2" for="pwd">Mãe:</label>
+      <div class="col-sm-9">          
+        <input type="text" class="form-control" id="filiacaoMae" name = "filiacaoMae"placeholder="Mãe">
+      </div>
+      
+       <label class="control-label col-sm-2" for="pwd">Numero de Funcionário:</label>
+      <div class="col-sm-9">          
+        <input type="text" class="form-control" id="numeroDeMembro" name = "numeroDeFuncionario"placeholder="Número de Funcionário">
+      </div>
+      <label class="control-label col-sm-2" for="pwd">Salário Base:</label>
+      <div class="col-sm-9">          
+        <input type="text" class="form-control" id="salarioBase" name = "salarioBase"placeholder="Salário Base">
+      </div>
+      <label class="control-label col-sm-2" for="email">{{form.foto.label_tag}}</label>
+       <div class="col-sm-9"> 
+       {{form.foto.errors}}    
+       {{form.foto}}
+       </div>
+       
+      <div class="col-sm-offset-2 col-sm-9">
+        <button type="submit" class="btn btn-default">Gravar</button>
+      </div>
+
+
+    </div>
+
+  </form>
+</div>
+</div>
+</div>
+</div>
+  
+ <style type="text/css">
+    .form-horizontal{
+
+      background-color: white;
+      margin-top: 10px;
+      margin-left: auto;
+      margin-right: auto;
+     
+      
+      }
+    .col-sm-9{
+      margin-bottom: 6px;
+    }
+    .control-label{
+      font-size: 10px;
+    }
+     .form-control{
+      font-size: 12px;
+    }
+  
+   
+  </style>
+
+{% endblock content%}
+
+
+
+

@@ -1,0 +1,64 @@
+{% extends "homeUm.html" %}
+{%block imagem%}<img src="/media/{{configuracoes.imagem1}}" width="100" height="30">{%endblock imagem%}
+{%block igreja%}{{igreja.nomeDaIgreja}}{%endblock igreja%}
+{% block content %}
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+{% for resultado in resultado %}
+                <!-- First Blog Post -->
+                <h2 color="black">
+                    <a href="/gestao/noticias/lermais?id={{resultado.id}}">{{resultado.titulo}}</a>
+                </h2>
+                <p class="lead">
+		    Por:
+                    {{resultado.nomeDoMembro}}
+                </p>
+                <p><i class="fa fa-clock-o"></i> Data da publicação:{{resultado.dataPublicacao}}</p>
+                <hr>
+                <a href="/gestao/noticias/lermais?id={{resultado.id}}"> 
+                    <img class="img-responsive img-hover" src="/media/{{resultado.foto}}" alt="" style = "max-width:auto; max-heght:auto; width:780px; height:450px;">
+                </a>
+                <hr>
+                <p>{{resultado.noticia}}</p>
+                <a class="btn btn-primary" href="/gestao/noticias/lermais?id={{resultado.id}}">Ler mais<i class="fa fa-angle-right"></i></a>
+
+                <hr>
+{% endfor  %}
+
+                
+                <!-- Pager -->
+                <ul class="pager">
+                    <li class="previous">
+                        <a href="#">&larr; Primeira</a>
+                    </li>
+                    <li class="next">
+                        <a href="#">Última &rarr;</a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <!-- Blog Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <style type="text/css">
+        .row{
+            padding-top: 6px;
+        }
+        .container{
+        margin-left: 80px;
+        margin-right: 80px;
+    }
+    </style>
+{%endblock content%}

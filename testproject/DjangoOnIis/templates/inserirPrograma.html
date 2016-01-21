@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{%block igreja1%}{{igreja.nomeDaIgreja}}{%endblock igreja1%}
+{%block igreja2%}{{igreja.nomeDaIgreja}}{%endblock igreja2%}
+{% block ano %} {{ano}}{% endblock ano %}
+{%block igreja3%}{{igreja.nomeDaIgreja}} {%endblock igreja3%}
+{% block desenvolvedores %} {{configuracoes.desenvolvedores}}{% endblock desenvolvedores %}
+{% block content %}
+
+<div class="col-sm-9" >
+  <div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs col-sm-10" role="tablist">
+    <li role="presentation" class="active" style="font-size:12px;"><a href="#Programa" aria-controls="Programa" role="tab" data-toggle="tab">Programa Semanal da Igreja</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content col-sm-10" style = "background-color: white; box-shadow: 2px 10px 10px 3px grey;">
+  
+    <div role="tabpanel" class="tab-pane fade in active" id="Programa">
+
+  <form class="form-horizontal" role="form" method="POST">{% csrf_token %}
+    {{form.errors}}
+    <div class="form-group">
+      <p><p>
+     
+      <label class="control-label col-sm-2" for="email">Dia da Semana:</label>
+     <div class="col-sm-9">          
+       <select class="form-control input-sm" id="diaDaSemana" name = "diaDaSemana">
+        <option></option>
+        <option>Segunda-Feira</option>
+        <option>Terça-Feira</option>
+        <option>Quarta-Feira</option>
+        <option>Quinta-Feira</option>
+        <option>Sexta-Feira</option>
+        <option>Sábado</option>
+        <option>Domingo</option>
+
+      </select>
+      </div>
+       <label class="control-label col-sm-2" for="email">Descrição:</label>
+     <div class="col-sm-9">          
+        <textarea type="text" class="form-control" id="descricao" name = "descricao">  </textarea>
+      </div>
+        <div class="col-sm-offset-2 col-sm-9">
+        <button type="submit" class="btn btn-default">Gravar</button>
+      </div>
+	</div>
+  </form>
+</div>
+</div>
+</div>
+</div>
+ <style type="text/css">
+    .form-horizontal{
+
+      background-color: white;
+      margin-top: 10px;
+      margin-left: auto;
+      margin-right: auto;
+     
+      
+      }
+    .col-sm-9{
+      margin-bottom: 6px;
+    }
+    .control-label{
+      font-size: 10px;
+    }
+     .form-control{
+      font-size: 12px;
+    } 
+</style>
+
+
+{% endblock content %}

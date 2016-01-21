@@ -1,0 +1,208 @@
+{% extends "base.html" %}
+<!-- Custom styles for this template -->
+{%block igreja1%}{{igreja.nomeDaIgreja}}{%endblock igreja1%}
+{%block igreja2%}{{igreja.nomeDaIgreja}}{%endblock igreja2%}
+{% block ano %} {{ano}}{% endblock ano %}
+{%block igreja3%}{{igreja.nomeDaIgreja}} {%endblock igreja3%}
+{% block desenvolvedores %} {{configuracoes.desenvolvedores}}{% endblock desenvolvedores %}
+{% block content %}
+
+<div class="col-sm-9" >
+  <div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs col-sm-10" role="tablist">
+    <li role="presentation" class="active" style="font-size:12px; "><a href="#editarMembro" aria-controls="editarMembro" role="tab" data-toggle="tab">Editar Membro</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content col-sm-10" style = "background-color: white; box-shadow: 2px 10px 10px 3px grey;">
+    <div role="tabpanel" class="tab-pane fade in active" id="editarMembro" style="font-size:12px;  margin-top: 10px;">
+  <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    {{form.errors}}
+    <div class="form-group">
+      <p><p>
+      <label class="control-label col-sm-2" for="email">Nome:</label>
+     <div class="col-sm-10">          
+        <input type="text" class="form-control" id="nomeDoMembro" name = "nomeDoMembro"placeholder="Nome do Membro" value="{%for resultado in resultado %}{{resultado.nomeDoMembro}}{% endfor %}">
+      </div>
+
+
+
+      <label class="control-label col-sm-2" for="pwd">Estado:</label>
+      <div class="col-sm-10">          
+       <select class="form-control input-sm" id="estadoCivil" name = "estadoCivil">
+        <option></option>
+        <option>Solteiro(a)</option>
+        <option>Casado(a)</option>
+        <option>Divorciado(a)</option>
+        <option>Viúvo(a)</option>
+      </select>
+      </div>
+
+      <label class="control-label col-sm-2" for="pwd">Sexo:</label>
+      <div class="col-sm-10">          
+       <select class="form-control input-sm" id="sexo" name = "sexo">
+        <option></option>
+        <option>Masculino</option>
+        <option>Feminino</option>
+      </select>
+      </div>
+
+      <label class="control-label col-sm-2" for="pwd">Cargo:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="cargo" name = "cargo"placeholder="Cargo Profissional" value="{%for resultado in resultado %}{{resultado.cargo}}{% endfor %}">
+      </div>
+      <label class="control-label col-sm-2" for="pwd">Função:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="funcaoNaIgreja" name = "funcaoNaIgreja"placeholder="Função na Igreja" value="{%for resultado in resultado %}{{resultado.funcaoNaIgreja}}{% endfor %}">
+      </div>
+       <label class="control-label col-sm-2" for="pwd">Endereço:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="endereco" name = "endereco"placeholder="Endereço" value="{%for resultado in resultado %}{{resultado.endereco}}{% endfor %}">
+      </div>
+
+      <label class="control-label col-sm-2" for="pwd">Bairro:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="bairro" name = "bairro"placeholder="Bairro" value="{%for resultado in resultado %}{{resultado.bairro}}{% endfor %}">
+      </div>
+ <label class="control-label col-sm-2" for="pwd">Provincia:</label>
+      <div class="col-sm-10">          
+       <select class="form-control input-sm" id="provincia" name = "provincia">
+        <option></option>
+      {% for provincia in provincia %}
+        <option>{{provincia.nomeDaProvincia}}</option>
+        {% endfor %}
+      </select>
+      </div>
+
+      <label class="control-label col-sm-2" for="pwd">CP:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="caixaPostal" name = "caixaPostal"placeholder="Caixa Postal" value="{%for resultado in resultado %}{{resultado.caixaPostal}}{% endfor %}">
+      </div>
+      <label class="control-label col-sm-2" for="pwd">Telefone:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="telefone" name = "telefone"placeholder="Telefone" value="{%for resultado in resultado %}{{resultado.telefone}}{% endfor %}">
+      </div>
+
+ <label class="control-label col-sm-2" for="pwd">E-mail:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="email" name = "email"placeholder="E-mail" value="{%for resultado in resultado %}{{resultado.email}}{% endfor %}">
+      </div>
+
+       <label class="control-label col-sm-2" for="pwd">Nascimento:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="dataDeNascimento" name = "dataDeNascimento"placeholder="Data de Nascimento" value="{%for resultado in resultado %}{{resultado.dataDeNascimento.year}}-{{resultado.dataDeNascimento.month}}-{{resultado.dataDeNascimento.day}}{% endfor %}">
+      </div>
+ 
+      <label class="control-label col-sm-2" for="pwd">Nacionalidade:</label>
+      <div class="col-sm-10">          
+       <select class="form-control input-sm" id="pais" name = "pais">
+        <option></option>
+        {% for pais in pais %}
+        <option>{{pais.nomeDoPais}}</option>
+        {% endfor %}
+      </select>
+      </div>
+      <label class="control-label col-sm-2" for="pwd">Grau:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="grauAcademico" name = "grauAcademico"placeholder="Grau Acadêmico" value="{%for resultado in resultado %}{{resultado.grauAcademico}}{% endfor %}">
+      </div>
+      <label class="control-label col-sm-2" for="pwd">Profissão:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="profissao" name = "profissao"placeholder="Profissão" value="{%for resultado in resultado %}{{resultado.profissao}}{% endfor %}">
+      </div>
+
+      <label class="control-label col-sm-2" for="pwd">BI:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="numeroDeIdentificacao" name = "numeroDeIdentificacao"placeholder="Número de Identificação" value="{%for resultado in resultado %}{{resultado.numeroDeIdentificacao}}{% endfor %}" >
+      </div>
+      <label class="control-label col-sm-2" for="pwd">Cônjuge:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="conjuge" name = "conjuge"placeholder="Cônjuge" value="{%for resultado in resultado %}{{resultado.conjuge}}{% endfor %}">
+      </div>
+      <label class="control-label col-sm-2" for="pwd">Pai:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="filiacaoPai" name = "filiacaoPai"placeholder="Pai" value="{%for resultado in resultado %}{{resultado.filiacaoPai}}{% endfor %}">
+      </div>
+      <label class="control-label col-sm-2" for="pwd">Mãe:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="filiacaoMae" name = "filiacaoMae"placeholder="Mãe" value="{%for resultado in resultado %}{{resultado.filiacaoMae}}{% endfor %}">
+      </div>
+      <label class="control-label col-sm-2" for="pwd">Conversão:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="dataDeConversao" name = "dataDeConversao"placeholder="Data de conversão" value="{%for resultado in resultado %}{{resultado.dataDeConversao.year}}-{{resultado.dataDeConversao.month}}-{{resultado.dataDeConversao.day}}{% endfor %}">
+      </div>
+      <label class="control-label col-sm-2" for="pwd">Procedência:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="procedencia" name = "procedencia"placeholder="Procedencia" value="{%for resultado in resultado %}{{resultado.procedencia}}{% endfor %}">
+      </div>
+      <label class="control-label col-sm-2" for="pwd">Admissão:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="formaDeAdmissao" name = "formaDeAdmissao"placeholder="Forma de admissão" value="{%for resultado in resultado %}{{resultado.formaDeAdmissao}}{% endfor %}">
+      </div>
+      <label class="control-label col-sm-2" for="pwd">Baptismo:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="dataDeBaptismo" name = "dataDeBaptismo"placeholder="Data de baptismo" value="{%for resultado in resultado %}{{resultado.dataDeBaptismo.year}}-{{resultado.dataDeBaptismo.month}}-{{resultado.dataDeBaptismo.day}}{% endfor %}">
+      </div>
+      <label class="control-label col-sm-2" for="pwd">Local:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="localDeBaptismo" name = "localDeBaptismo"placeholder="Local de baptismo" value="{%for resultado in resultado %}{{resultado.localDeBaptismo}}{% endfor %}">
+      </div>
+      
+      
+       <label class="control-label col-sm-2" for="pwd">Departamento:</label>
+      <div class="col-sm-10">          
+       <select class="form-control input-sm" id="departamento" name = "departamento">
+        <option></option>
+       {% for departamento in departamento %}
+        <option>{{departamento.nomeDoDepartamento}}</option>
+        {% endfor %}
+      </select>
+      </div>
+           <label class="control-label col-sm-2" for="pwd">Igreja:</label>
+      <div class="col-sm-10">          
+       <select class="form-control input-sm" id="igreja" name = "igreja">
+        <option></option>
+       
+        <option>{{igreja.nomeDaIgreja}}</option>
+      </select>
+      </div>
+      
+      <label class="control-label col-sm-2" for="email">{{form.foto.label_tag}}</label>
+     <div class="col-sm-9"> 
+     {{form.foto.errors}}    
+     {{form.foto}}
+     </div>
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default">Gravar</button>
+      </div>
+
+
+    </div>
+
+  </form>
+</div>
+</div>
+</div>
+</div>
+<style type="text/css">
+    .form-horizontal{
+
+      background-color: white;
+      margin-top: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      }
+    .col-sm-9{
+      margin-bottom: 6px;
+    }
+    .control-label{
+      font-size: 10px;
+    }
+   .form-control{
+      font-size: 12px;
+    }
+   
+  </style>
+{% endblock content%}

@@ -1,0 +1,414 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+{%extends "base.html" %}
+{%block igreja1%}{{igreja.nomeDaIgreja}}{%endblock igreja1%}
+{%block igreja2%}{{igreja.nomeDaIgreja}}{%endblock igreja2%}
+{% block ano %} {{ano}}{% endblock ano %}
+{%block igreja3%}{{igreja.nomeDaIgreja}} {%endblock igreja3%}
+{% block desenvolvedores %} {{configuracoes.desenvolvedores}}{% endblock desenvolvedores %}
+{%block usuario%}{{usuario.nomeDoMembro}}{%endblock usuario%}
+{% block extra_head %}
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+  <script src="http://code.highcharts.com/modules/data.js"></script>
+  <script src="http://code.highcharts.com/modules/drilldown.js"></script>
+{% endblock %}
+
+
+
+
+
+{% block content %}
+
+
+<div class="col-sm-9" >
+  <div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs col-sm-10" role="tablist">
+    <li role="presentation" class="active" style="font-size:12px; "><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Informação&Estatísticas</a></li>
+</ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content col-sm-10" style = "background-color: white; box-shadow: 2px 10px 10px 3px grey;font-size=12px; margin-top:10px;">
+
+<form class="form-horizontal" role="form" method="GET">
+    <div role="tabpanel" class="tab-pane fade in active" id="CONTEINER" style="font-size:12px; margin-top: 10px;">
+        <div class="col-sm-12">              
+            <div class="col-sm-5">
+            <h4> <p> {{igreja.nomeDaIgreja}} </p> </h4>
+                    <p> <b>Endereço:     </b>{{igreja.endereco}} </p>
+                    <p> <b>Caixa Postal:</b> {{igreja.caixaPostal}} </p>
+                    <p> <b>Telefone:     </b>{{igreja.telefone}} </p>
+                </td>
+            </div>
+    
+            <div class="col-sm-6">
+                             
+                              <label class="control-label" for="pwd">Ano:</label>
+                                       
+                               <select size="1" class="form-control input-sm" id="anoescolha" name = "anoescolha">
+                                {%  for anoDoDizimo in anoDoDizimo %}
+                                <option id ="nome" onclick="myFunction()">{{anoDoDizimo.anoDoDizimo}}</option>
+                                {% endfor %}
+                                
+                              </select>
+                             <p><p>
+                                 
+                            <div>
+                                <button type="submit" class="btn btn-default">Buscar</button><br><br>
+                          </div>
+            </div>
+        </div>
+
+                  
+</form>
+
+
+        <legend>Dízimos</legend> 
+            <div role="tabpanel" class="tab-pane fade in active" id="home" style="font-size:12px; margin-top: 10px;"></div>
+            <div style="background-color:red" class="col-sm-12">. </div>
+        </fieldset>
+         <legend>Ofertas</legend> 
+            <div role="tabpanel" class="tab-pane fade in active" id="home2" style="font-size:12px; margin-top: 10px;"></div> 
+            <div style="background-color:red" class="col-sm-12">. </div> 
+        </fieldset>
+         <legend>Contribuições</legend> 
+            <div role="tabpanel" class="tab-pane fade in active" id="home3" style="font-size:12px; margin-top: 10px;"></div> 
+            <div style="background-color:red" class="col-sm-12">. </div> 
+        </fieldset>
+        <legend>Membros</legend> 
+            <div role="tabpanel" class="tab-pane fade in active" id="home4" style="font-size:12px; margin-top: 10px;"></div>  
+        </fieldset>
+
+
+        </div>
+    
+       
+        </div>
+
+    
+    <div role="tabpanel" class="tab-pane fade in active" id="Graficos" style="font-size:12px; margin-top: 10px;">
+     
+  
+    </div>
+ 
+    </div>
+ 
+  </div>
+  </div> 
+
+<script type="text/javascript">
+$(function () {
+    $('#home').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Estatística de dízimos no ano {{ano}}'
+        },
+        subtitle: {
+            text: 'Passe o cursor em cima do mês para mais informações'
+        },
+        xAxis: {
+            type: 'category',
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Total mensal de dízimos'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'Total de dízimos: <b>{point.y:.1f} Kwanzas</b>'
+        },
+
+
+
+
+
+        series: [{
+            name: 'Dízimos',
+            data: [
+                    {% for totaldizimos in totaldizimos%}
+
+                ['{{totaldizimos.mesDoDizimo}}', {{totaldizimos.totalDizimo}}],
+
+
+                    {% endfor %}
+
+            ],
+            dataLabels: {
+                enabled: true,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                format: '{point.y:.1f}', // one decimal
+                y: 10, // 10 pixels down from the top
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        }]
+    });
+});
+
+
+//Ofertas
+$(function () {
+    $('#home2').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Estatística de ofertas no ano {{ano}}'
+        },
+        subtitle: {
+            text: 'Passe o cursor em cima do mês para mais informações'
+        },
+        xAxis: {
+            type: 'category',
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Total mensal de ofertas'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'Total de ofertas: <b>{point.y:.1f} Kwanzas</b>'
+        },
+
+
+
+
+
+        series: [{
+            name: 'Dízimos',
+            data: [
+                    {% for totaloferta in totaloferta%}
+
+                ['{{totaloferta.mesDaOferta}}', {{totaloferta.totalOferta}}],
+
+
+                    {% endfor %}
+
+            ],
+            dataLabels: {
+                enabled: true,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                format: '{point.y:.1f}', // one decimal
+                y: 10, // 10 pixels down from the top
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        }]
+    });
+});
+
+//Contribuições
+$(function () {
+    $('#home3').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Estatística de Contribuições no ano {{ano}}'
+        },
+        subtitle: {
+            text: 'Passe o cursor em cima do mês para mais informações'
+        },
+        xAxis: {
+            type: 'category',
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Total mensal de contribuições'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'Total das contribuições: <b>{point.y:.1f} Kwanzas</b>'
+        },
+
+
+
+
+
+        series: [{
+            name: 'Dízimos',
+            data: [
+                    {% for totalcontribuicao in totalcontribuicao%}
+
+                ['{{totalcontribuicao.mesDaContribuicao}}', {{totalcontribuicao.totalContribuicao}}],
+
+
+                    {% endfor %}
+
+            ],
+            dataLabels: {
+                enabled: true,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                format: '{point.y:.1f}', // one decimal
+                y: 10, // 10 pixels down from the top
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        }]
+    });
+});
+
+
+
+
+//Membros
+$(function () {
+    $('#home4').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Estatística de membros no ano {{ano}}'
+        },
+        subtitle: {
+            text: 'Passe o cursor em cima do mês para mais informações'
+        },
+        xAxis: {
+            type: 'category',
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Total de Membros'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'Total de membros: <b>{point.y:.1f}</b>'
+        },
+
+ //{% for totalmembros in totalmembros%}
+                   
+                   // {% if totalmembros.dataMembro.month == 10 %}
+                       // mes='Outubro'
+                    //{% endif %}
+
+//{% endfor %}
+ 
+
+
+
+        series: [{
+            name: 'Membros',
+            data: [
+                    {% for totalmembros in totalmembros%}
+                    {% if totalmembros.dataMembro.month == 1 %}
+                                        ['Janeiro', {{totalmembros.totalMembros}}],
+                         {% endif %}
+                         {% if totalmembros.dataMembro.month == 2 %}
+                                        ['Fevereiro', {{totalmembros.totalMembros}}],
+                         {% endif %}
+                         {% if totalmembros.dataMembro.month == 3 %}
+                                        ['Março', {{totalmembros.totalMembros}}],
+                         {% endif %}
+                         {% if totalmembros.dataMembro.month == 4 %}
+                                        ['Abril', {{totalmembros.totalMembros}}],
+                         {% endif %}
+                         {% if totalmembros.dataMembro.month == 5 %}
+                                        ['Maio', {{totalmembros.totalMembros}}],
+                         {% endif %}
+                         {% if totalmembros.dataMembro.month == 6 %}
+                                        ['Junho', {{totalmembros.totalMembros}}],
+                         {% endif %}
+                         {% if totalmembros.dataMembro.month == 7 %}
+                                        ['Julho', {{totalmembros.totalMembros}}],
+                         {% endif %}
+                         {% if totalmembros.dataMembro.month == 8 %}
+                                        ['Agosto', {{totalmembros.totalMembros}}],
+                         {% endif %}
+                         {% if totalmembros.dataMembro.month == 9 %}
+                                        ['Setembro', {{totalmembros.totalMembros}}],
+                         {% endif %}
+            
+                        {% if totalmembros.dataMembro.month == 10 %}
+                                        ['Outubro', {{totalmembros.totalMembros}}],
+                         {% endif %}
+                         {% if totalmembros.dataMembro.month == 11 %}
+                                        ['Novembro', {{totalmembros.totalMembros}}],
+                         {% endif %}
+                         {% if totalmembros.dataMembro.month == 12 %}
+                                        ['Dezembro', {{totalmembros.totalMembros}}],
+                         {% endif %}
+
+ 
+
+                    {% endfor %}
+
+
+            ],
+            dataLabels: {
+                enabled: true,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                format: '{point.y:.1f}', // one decimal
+                y: 10, // 10 pixels down from the top
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        }]
+    });
+});
+</script>
+
+
+
+{% endblock content %}

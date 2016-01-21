@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{%block igreja1%}{{igreja.nomeDaIgreja}}{%endblock igreja1%}
+{%block igreja2%}{{igreja.nomeDaIgreja}}{%endblock igreja2%}
+{% block ano %} {{ano}}{% endblock ano %}
+{%block igreja3%}{{igreja.nomeDaIgreja}} {%endblock igreja3%}
+{% block desenvolvedores %} {{configuracoes.desenvolvedores}}{% endblock desenvolvedores %}
+{% block content%}
+
+<div class="col-sm-9" >
+  <div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs col-sm-10" role="tablist">
+    <li role="presentation" class="active" style="font-size:12px; "><a href="#pesquisarDocumento" aria-controls="pesquisarDocumento" role="tab" data-toggle="tab">Pesquisar Documento</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content col-sm-10" style = "background-color: white; box-shadow: 2px 10px 10px 3px grey;">
+  
+    <div role="tabpanel" class="tab-pane fade in active" id="pesquisarDocumento" style="font-size:12px;" >
+  <form class="form-horizontal" role="form" method="GET">
+  <div class="form-group">          
+       <label class="control-label col-sm-2" for="pwd">Opcao:</label>
+      <div class="col-sm-9">          
+       <select size="1" class="form-control input-sm" id="opcao" name = "opcao" >
+        <option></option>
+        <option >Nome</option>
+        <option >Numero de Membro</option>
+        
+      </select>
+      </div>
+      <label class="control-label col-sm-2" id ="entrada"for="pwd">Informação:</label>
+      <div class="col-sm-9" id="col-sm-9">          
+        <input type="text" class="form-control" id="informacao" name = "informacao"placeholder="Informação ">
+      </div>
+	<label class="control-label col-sm-2" id ="entrada"for="pwd">Ano:</label>
+      <div class="col-sm-9" id="col-sm-9">          
+        <select size="1"class="form-control input-sm" id="ano" name = "ano">
+          <option>2014</option>
+          <option>2015</option>
+          <option>2016</option>
+          <option>2017</option>
+          <option>2018</option>
+          <option>2019</option>
+          <option>2020</option>
+          <option>2021</option>
+          <option>2022</option>
+          <option>2023</option>
+          <option>2024</option>
+          <option>2025</option>
+        </select>
+      </div>
+      <div class="col-sm-offset-2 col-sm-9">
+        <button type="submit" class="btn btn-default">Pesquisar</button>
+      </div>
+      <div class="col-sm-9" style="margin-top:5px;">
+        <label>{%if resultado%}Membro: {{resultado.nomeDoMembro}}{%endif%}</label>
+      </div>
+   </div> 
+  </form>
+  
+{%if resultado %}
+ <div class="table-responsive" >   
+ <table class="table table-hover">
+ 
+      <thead>
+      <tr>
+        <th>Carta de Recomendação</th>
+         <th style="text-align:right"><a href="/cartaDeRecomendacao.pdf?numeroDeMembro={{resultado.numeroDeMembro}}">Visualizar</a></th>
+      </tr>
+      <tr>
+        <th>Ficha de Membro</th>
+         <th style="text-align:right"><a href="/fichaDeMembro.pdf?numeroDeMembro={{resultado.numeroDeMembro}}" >Visualizar</a></th>
+      </tr>
+      <tr>
+        <th>Dízimos</th>
+         <th style="text-align:right"><a href="/dizimoAnoDocumento.pdf?numeroDeMembro={{resultado.numeroDeMembro}}&id={{resultado.id}}" >Visualizar</a></th>
+      </tr>
+      <tr>
+        <th>Contribuições</th>
+         <th style="text-align:right"><a href="/contribuicaoAnoDocumento.pdf?numeroDeMembro={{resultado.numeroDeMembro}}&id={{resultado.id}}" >Visualizar</a></th>
+      </tr>
+    </thead>
+   
+  </table>
+</div>
+{%endif%}
+</div>
+</div>
+</div>
+</div>
+
+<style type="text/css">
+.col-sm-9{
+      margin-bottom: 6px;
+      margin-top: 6px;
+
+    }
+    .control-label{
+      font-size: 10px;
+    }
+
+th{
+  font-weight:normal;
+
+}
+
+  .form-control{
+      font-size: 12px;
+    }  
+</style>
+
+  
+{% endblock content %}

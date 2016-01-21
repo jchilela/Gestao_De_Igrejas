@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{%block igreja1%}{{igreja.nomeDaIgreja}}{%endblock igreja1%}
+{%block igreja2%}{{igreja.nomeDaIgreja}}{%endblock igreja2%}
+{% block ano %} {{ano}}{% endblock ano %}
+{%block igreja3%}{{igreja.nomeDaIgreja}} {%endblock igreja3%}
+{% block desenvolvedores %} {{configuracoes.desenvolvedores}}{% endblock desenvolvedores %}
+{% block content %}
+
+<div class="col-sm-9" >
+  <div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs col-sm-10" role="tablist">
+    <li role="presentation" class="active" style="font-size:12px; "><a href="#pesquisarFuncionario" aria-controls="pesquisarFuncionario" role="tab" data-toggle="tab">Pesquisar Funcionário</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content col-sm-10" style = "background-color: white; box-shadow: 2px 10px 10px 3px grey;">
+  
+    <div role="tabpanel" class="tab-pane fade in active" id="pesquisarFuncionario" style="font-size:12px;  margin-top: 10px;">
+  <form class="form-horizontal" role="form" method="POST">
+<div class="form-group" style="margin-left:3px;">
+ <fieldset>
+<legend>Fotografia</legend> 
+<div class="col-sm-2" style="margin-left:60%;">
+<img src="/media/{{resultado.foto}}" width="200" heigth="400"><p></p>  
+</div>
+</fieldset>
+<fieldset>
+<legend>Dados Pessoais </legend>      
+<table style="width:50%">
+   
+  <tr>
+    <td>Nome:</td>
+    <td><b>{{resultado.nomeDoFuncionario}}</b></td>
+  </tr>
+ <tr>
+    <td>Data de Nascimento:</td>
+    <td><b>{{resultado.dataDeNascimento}}</b></td>
+  </tr>
+  <tr>
+    <td>Sexo:</td>
+    <td><b>{{resultado.sexo}}</b></td>
+  </tr>
+   <tr>
+    
+    <td>Provincia:</td>
+    <td><b>{{provincia.nomeDaProvincia}}</b></td>
+   
+  </tr>
+   <tr>
+ 
+    <td>Pais:</td>
+    <td><b>{{pais.nomeDoPais}}</b></td>
+    
+  </tr>
+  <tr>
+    <td>Estado Civil:</td>
+    <td><b>{{resultado.estadoCivil}}</b></td>
+  </tr>
+  <tr>
+    <td>Pai:</td>
+    <td><b>{{resultado.filiacaoPai}}</b></td>
+  </tr>
+   <tr>
+    <td>Mae:</td>
+    <td><b>{{resultado.filiacaoMae}}</b></td>
+  </tr>
+   <tr>
+    <td>Numero de Identificação:</td>
+    <td><b>{{resultado.numeroDeIdentificacao}}</b></td>
+  </tr>
+ 
+</table>
+</fieldset>
+
+<fieldset>
+<legend>Dados de contacto</legend> 
+ <table style="width:50%">
+  
+  <tr>
+    <td>Endereço:</td>
+    <td><b>{{resultado.endereco}}</b></td>
+  </tr>
+  <tr>
+    <td>Bairro:</td>
+    <td><b>{{resultado.bairro}}</b></td>
+  </tr>
+  <tr>
+    <td>Telefone:</td>
+    <td><b>{{resultado.telefone}}</b></td>
+  </tr>
+  <tr>
+    <td>Email:</td>
+    <td><b>{{resultado.email}}</b></td>
+  </tr>
+
+</table> 
+</fieldset>
+
+<fieldset>
+<legend>Dados Profissionais</legend>
+<table style="width:50%;">
+
+
+<tr>
+    <td>Grau Académico:</td>
+    <td><b>{{resultado.grauAcademico}}</b></td>
+  </tr>
+  <tr>
+    <td>Profissão:</td>
+    <td><b>{{resultado.profissao}}</b></td>
+  </tr>
+  <tr>
+    <td>Nº de Funcionário:</td>
+    <td><b>{{resultado.numeroDeFuncionario}}</b></td>
+  </tr>
+  <tr>
+    <td>Salário Base:</td>
+    <td><b>{{resultado.salarioBase}}</b></td>
+  </tr>
+  
+</table>
+
+<div class="col-sm-2" style="margin-left:-15px;">
+        <button type="reset" class="btn btn-default" onclick="voltar()">Voltar</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+
+function voltar(){
+  window.location= "/gestao/rh/funcionario/pesquisar/";
+}
+</script>
+
+{% endblock content %}

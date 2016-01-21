@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{%block igreja1%}{{igreja.nomeDaIgreja}}{%endblock igreja1%}
+{%block igreja2%}{{igreja.nomeDaIgreja}}{%endblock igreja2%}
+{% block ano %} {{ano}}{% endblock ano %}
+{%block igreja3%}{{igreja.nomeDaIgreja}} {%endblock igreja3%}
+{% block desenvolvedores %} {{configuracoes.desenvolvedores}}{% endblock desenvolvedores %}
+{% block content %}
+
+
+<div class="col-sm-9" >
+  <div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs col-sm-10" role="tablist">
+    <li role="presentation" class="active" style="font-size:12px; "><a href="#novaOferta" aria-controls="novaOferta" role="tab" data-toggle="tab">Nova Oferta</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content col-sm-10" style = "background-color: white; box-shadow: 2px 10px 10px 3px grey;">
+    <div role="tabpanel" class="tab-pane fade in active" id="novaOferta" style="font-size:12px;  margin-top: 10px;">
+  <form class="form-horizontal" role="form" method="POST">{% csrf_token %}
+    {{form.errors}}
+    <div class="form-group">
+      <p><p>
+  <label class="control-label col-sm-2" for="pwd">Igreja:</label>
+      <div class="col-sm-9">          
+       <select class="form-control input-sm" id="igreja" name = "igreja">
+        <option></option>
+        
+        <option>{{igreja.nomeDaIgreja}}</option>
+      </select>
+      </div>
+
+
+      <label class="control-label col-sm-2" for="email">Valor da oferta:</label>
+     <div class="col-sm-9">          
+        <input type="text" class="form-control" id="valorDaOferta" name = "valorDaOferta"placeholder="Valor da oferta" value="{%for resultado in resultado %}{{resultado.valorDaOferta}}{% endfor %}">
+      </div>
+
+  <label class="control-label col-sm-2" for="email">Data:</label>
+     <div class="col-sm-9">          
+        <input type="text" class="form-control" id="dataDaOferta" name = "dataDaOferta"placeholder="Data da oferta" value="{%for resultado in resultado %}{{resultado.dataDaOferta}}{% endfor %}">
+      </div>
+
+        <label class="control-label col-sm-2" for="email">Mês:</label>
+     <div class="col-sm-9">
+        <select class="form-control input-sm" id="mesDaOferta" name = "mesDaOferta">
+
+         <option></option>
+        <option>Janeiro</option>
+        <option>Fevereiro</option>
+        <option>Março</option>
+        <option>Abril</option>
+        <option>Maio</option>
+        <option>Junho</option>
+        <option>Julho</option>
+        <option>Agosto</option>
+        <option>Setembro</option>
+        <option>Outubro</option>
+        <option>Novembro</option>
+        <option>Dezembro</option>
+
+       </select>
+      </div>
+
+
+       <label class="control-label col-sm-2" for="email">Ano:</label>
+     <div class="col-sm-9">
+        <select class="form-control input-sm" id="anoDaOferta" name = "anoDaOferta">
+                 <option></option>
+        <option>2015</option>
+        <option>2016</option>
+        <option>2017</option>
+        <option>2018</option>
+        <option>2019</option>
+        <option>2020</option>
+        <option>2021</option>
+        <option>2022</option>
+        <option>2023</option>
+        <option>2024</option>
+        <option>2025</option>
+        </select>
+      </div>
+      <div class="col-sm-offset-2 col-sm-9">
+        <button type="submit" class="btn btn-default">Gravar</button>
+      </div>
+	</div>
+  </form>
+</div>
+</div>
+</div>
+</div>
+
+<style type="text/css">
+.col-sm-9{
+      margin-bottom: 6px;
+      
+    }
+    .control-label{
+      font-size: 10px;
+    }
+    .form-control{
+      font-size: 12px;
+    }
+   
+</style>
+{% endblock content %}

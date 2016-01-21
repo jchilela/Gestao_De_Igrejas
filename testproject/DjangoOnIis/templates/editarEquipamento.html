@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{%block igreja1%}{{igreja.nomeDaIgreja}}{%endblock igreja1%}
+{%block igreja2%}{{igreja.nomeDaIgreja}}{%endblock igreja2%}
+{% block ano %} {{ano}}{% endblock ano %}
+{%block igreja3%}{{igreja.nomeDaIgreja}} {%endblock igreja3%}
+{% block desenvolvedores %} {{configuracoes.desenvolvedores}}{% endblock desenvolvedores %}
+{% block content %}
+
+<div class="col-sm-9" >
+  <div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs col-sm-10" role="tablist">
+    <li role="presentation" class="active" style="font-size:12px; "><a href="#editarEquipamento" aria-controls="editarEquipamento" role="tab" data-toggle="tab">Editar Equipamento</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content col-sm-10" style = "background-color: white; box-shadow: 2px 10px 10px 3px grey;">
+    <div role="tabpanel" class="tab-pane fade in active" id="editarEquipamento" style="font-size:12px; margin-top: 10px;">
+  <form class="form-horizontal" role="form" method="POST">{% csrf_token %}
+    {{form.errors}}
+    <div class="form-group">
+      <p><p>
+     
+  <label class="control-label col-sm-2" for="pwd">Igreja:</label>
+      <div class="col-sm-9">          
+       <select class="form-control input-sm" id="igreja" name = "igreja">
+        <option></option>
+        
+        <option>{{igreja.nomeDaIgreja}}</option>
+      </select>
+      </div>
+
+      <label class="control-label col-sm-2" for="email">Nome do Equipamento:</label>
+     <div class="col-sm-9">          
+        <input type="text" class="form-control" id="nome" name = "nome" value="{%for resultado in resultado %}{{resultado.nome}}{% endfor %}">
+      </div>
+      <label class="control-label col-sm-2" for="email">Marca:</label>
+     <div class="col-sm-9">          
+        <input type="text" class="form-control" id="marca" name = "marca" value="{%for resultado in resultado %}{{resultado.marca}}{% endfor %}">
+      </div>
+	<label class="control-label col-sm-2" for="email">Número de Série:</label>
+     <div class="col-sm-9">          
+        <input type="text" class="form-control" id="numeroDeSerie" name = "numeroDeSerie" value="{%for resultado in resultado %}{{resultado.numeroDeSerie}}{% endfor %}">
+      </div>
+	<label class="control-label col-sm-2" for="email">Data da aquisição:</label>
+     <div class="col-sm-9">          
+        <input type="text" class="form-control" id="dataDaAquisicao" name = "dataDaAquisicao" value="{%for resultado in resultado %}{{resultado.dataDaAquisicao.year}}-{{resultado.dataDaAquisicao.month}}-{{resultado.dataDaAquisicao.day}}{% endfor %}">
+      </div>
+<label class="control-label col-sm-2" for="email">Modelo:</label>
+     <div class="col-sm-9">          
+        <input type="text" class="form-control" id="modelo" name = "modelo" value="{%for resultado in resultado %}{{resultado.modelo}}{% endfor %}">
+      </div>
+
+<label class="control-label col-sm-2" for="email">Localização:</label>
+     <div class="col-sm-9">          
+        <input type="text" class="form-control" id="localizacao" name = "localizacao" value="{%for resultado in resultado %}{{resultado.localizacao}}{% endfor %}">
+      </div>
+<label class="control-label col-sm-2" for="pwd">Estado do equipamento:</label>
+      <div class="col-sm-9">          
+       <select class="form-control input-sm" id="estado" name = "estado">
+        <option></option>
+        <option>Funcional</option>
+        <option>Não Funcional</option>
+        <option>Emprestado</option>
+        <option>Destraviado</option>
+      </select>
+      </div>
+
+
+
+<label class="control-label col-sm-2" for="email">Preço:</label>
+     <div class="col-sm-9">          
+        <input type="text" class="form-control" id="preco" name = "preco" value="{%for resultado in resultado %}{{resultado.preco}}{% endfor %}">
+      </div>
+
+<label class="control-label col-sm-2" for="email">Observação:</label>
+     <div class="col-sm-9">          
+        <textarea type="text" class="form-control" id="obs" name = "obs" > {%for resultado in resultado %}{{resultado.obs}}{% endfor %} </textarea>
+      </div>
+
+        <div class="col-sm-offset-2 col-sm-9">
+        <button type="submit" class="btn btn-default">Gravar</button>
+      </div>
+	</div>
+  </form>
+</div>
+</div>
+</div>
+</div>
+
+
+<style type="text/css">
+    .form-horizontal{
+
+      background-color: white;
+      margin-top: 10px;
+      margin-left: auto;
+      margin-right: auto;
+    
+      }
+    .col-sm-9{
+      margin-bottom: 6px;
+    }
+    .control-label{
+      font-size: 10px;
+    }
+   .form-control{
+      font-size: 12px;
+    }
+   
+  </style>
+
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends "base.html"%}
+{%block igreja1%}{{igreja.nomeDaIgreja}}{%endblock igreja1%}
+{%block igreja2%}{{igreja.nomeDaIgreja}}{%endblock igreja2%}
+{% block ano %} {{ano}}{% endblock ano %}
+{%block igreja3%}{{igreja.nomeDaIgreja}} {%endblock igreja3%}
+{% block desenvolvedores %} {{configuracoes.desenvolvedores}}{% endblock desenvolvedores %}
+{%block content%}
+<div class="col-sm-9" >
+  <div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs col-sm-10" role="tablist">
+    <li role="presentation" class="active" style="font-size:12px; "><a href="#mensagensDeErro" aria-controls="mensagensDeErro" role="tab" data-toggle="tab">Erros de Administração</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content col-sm-10" style = "background-color: white; box-shadow: 2px 10px 10px 3px grey;">
+  
+    <div role="tabpanel" class="tab-pane fade in active" id="mensagensDeErro" style="font-size:12px;">
+
+    	<p>Não é possível eliminar o registo</p>
+    	<p>Contacte o administrador do sistema.</p>
+ 		<a href="/gestao/membro/pesquisar">Voltar</a>
+     
+</div>
+</div>
+</div>
+</div>
+{%endblock content%}
